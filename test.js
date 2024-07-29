@@ -1,14 +1,9 @@
-const {
-	WebSocketProvider,
-	Wallet,
-	Contract,
-	ContractFactory,
-	parseEther,
-} = require('ethers')
+const { Wallet, Contract, ContractFactory, parseEther } = require('ethers')
 const blockchain = require('./blockchain.json')
+const { JsonRpcProvider } = require('ethers')
 require('dotenv').config()
 
-const provider = new WebSocketProvider(process.env.LOCAL_RPC_URL_HTTP)
+const provider = new JsonRpcProvider(process.env.LOCAL_RPC_URL_HTTP)
 const wallet = Wallet.fromPhrase(process.env.MNEMONIC, provider)
 const erc20Deployer = new ContractFactory(
 	blockchain.erc20Abi,
